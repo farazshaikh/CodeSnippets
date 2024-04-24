@@ -1,0 +1,27 @@
+use ethers::{
+    contract::{abigen, ContractFactory},
+    core::utils::Anvil,
+    middleware::SignerMiddleware,
+    providers::{Http, Provider},
+    signers::{LocalWallet, Signer},
+    solc::{Artifact, Project, ProjectPathsConfig},
+};
+use eyre::Result;
+use std::{path::PathBuf, sync::Arc, time::Duration};
+
+fn main() {
+    // the directory we use is root-dir/examples
+    let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("contracts");
+    // we use `root` for both the project root and for where to search for contracts since
+    // everything is in the same directory
+    let paths = ProjectPathsConfig::builder()
+        .root(&root)
+        .sources(&root)
+        .build()
+        .unwrap();
+
+    // get the solc project instance using the paths above
+    let project = Project::builder().paths(paths).ephemeral().build().unwrap();
+    // compile the project and get the artifacts
+    let output = project.compile().unwrap();
+}
