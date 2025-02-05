@@ -1,0 +1,9 @@
+venv/
+arithmetic/
+bin/
+lib/
+share/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
