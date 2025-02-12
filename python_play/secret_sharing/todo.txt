@@ -1,0 +1,4 @@
+enable public key for recepients
+complete enc/dec
+enable chunking and sharing proofs
+make it enc/dec forward secure
