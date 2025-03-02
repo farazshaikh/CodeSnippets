@@ -35,6 +35,8 @@ from random import sample
 from typing import Dict, Optional
 import copy
 
+Prime = Integer("208351617316091241234326746312124448251235562226470491514186331217050270460481")
+
 class SharingBuilder:
     def __init__(self, secret: Integer, threshold: int, num_shares: int, prime: Integer, seed: Optional[int] = None) -> None:
         self.secret = secret
@@ -114,6 +116,16 @@ class SecretSharing:
         print(table)
 
     def _generate_shares(self, secret: Integer, threshold: int, num_shares: int, prime: Integer, seed: Optional[int] = None) -> None:
+        """
+        Generate shares for the secret.
+
+        Args:
+            secret (Integer): The secret to be shared.
+            threshold (int): The minimum number of shares required to reconstruct the secret.
+            num_shares (int): The total number of shares to generate.
+            prime (Integer): The prime modulus for the finite field.
+            seed (int, optional): Seed for random number generation.
+        """
         if seed is not None:
             random_seed(seed)
         coefficients = [secret] + [Integer(randint(0, prime - 1)) for _ in range(threshold - 1)]
@@ -128,7 +140,7 @@ class SecretSharing:
         self.shares = shares
         self.threshold = threshold
         self.num_shares = num_shares
-        self.prime = test_prime
+        self.prime = prime
         self.seed = seed
         self.secret = secret
 
@@ -177,7 +189,3 @@ class SecretSharing:
             lagrange_basis = (numerator * mod_inverse(denominator, prime)) % prime
             secret = (secret + y_j * lagrange_basis) % prime
         return secret
-
-
-if __name__ == "__main__":
-    ## see unit tests in ss_test.py
