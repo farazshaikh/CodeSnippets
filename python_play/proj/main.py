@@ -86,6 +86,7 @@ def pointtype(point):
         case _:
             print("not a pointOA")
 
+from typing import NamedTuple
 def main():
     #print(flatten([1, [2, 3, [4, 5], 6], 7, 8]))
     fibonacci(10)
@@ -101,6 +102,12 @@ def main():
         print(word)
 
 
+    class Student(NamedTuple):
+        age: int
+        name: str
 
+    s =[Student(age=20, name="John"), Student(age=21, name="Jane"), Student(21, "A")];
+    s.sort(key= lambda x: (x.age, ''.join(x.name.split())))
+    print(s)
 
 main()
