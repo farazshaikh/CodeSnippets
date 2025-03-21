@@ -21,3 +21,6 @@ print(s.q)
 assert(s.pop() == 9)
 assert(s.pop() == 8)
 print(s.q)
+
+
+q: collections.deque = collections.deque()

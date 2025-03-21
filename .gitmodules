@@ -1,0 +1,3 @@
+[submodule "python_play/books"]
+	path = python_play/books
+	url = https://github.com/farazshaikh/learn_python
